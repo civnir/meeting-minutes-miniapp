@@ -3,6 +3,7 @@
 .title { display:block; font-size: 36rpx; font-weight: 600; }
 .status { margin-top: 8rpx; color: #475467; display:block; }
 .primary { background:#1677ff; color:#fff; border-radius:12rpx; }
+.secondary { margin-top: 20rpx; background:#6b7280; color:#fff; border-radius:12rpx; }
 .success { margin-top: 20rpx; background:#16a34a; color:#fff; border-radius:12rpx; }
 .tips { margin-top: 20rpx; padding: 16rpx; background:#eff8ff; color:#175cd3; border-radius: 12rpx; }
 .textarea { margin-top: 20rpx; min-height: 340rpx; width: 100%; border:1rpx solid #d0d5dd; border-radius: 12rpx; padding: 16rpx; box-sizing: border-box; }

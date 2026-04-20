@@ -9,15 +9,18 @@
   </button>
 
   <view class="tips">
-    <text>当前 Demo 提供“手动粘贴转写文本”入口，便于先打通纪要流程。</text>
+    <text>商用版骨架：支持会中多次追加转写，再统一生成纪要。</text>
   </view>
 
   <textarea
     class="textarea"
     value="{{transcriptDraft}}"
-    placeholder="示例：\n产品：本次需求是新增邀请裂变活动...\n研发：技术上可行，预计两周..."
+    placeholder="示例：
+产品：本次需求是新增邀请裂变活动...
+研发：技术上可行，预计两周..."
     bindinput="onDraftInput"
   />
 
+  <button class="secondary" bindtap="appendDraft">追加本段转写</button>
   <button class="success" bindtap="finishMeeting">结束会议并生成纪要</button>
 </view>

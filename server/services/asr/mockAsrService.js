@@ -1,11 +1,11 @@
-function splitSpeakerLines(transcriptText) {
+function transcribeFromText(transcriptText) {
   return transcriptText
     .split('\n')
     .map((line) => line.trim())
     .filter(Boolean)
     .map((line, idx) => {
       const matched = line.match(/^([^：:]+)[：:](.+)$/);
-      const speaker = matched ? matched[1].trim() : `speaker_${(idx % 3) + 1}`;
+      const speaker = matched ? matched[1].trim() : `speaker_${(idx % 4) + 1}`;
       const text = matched ? matched[2].trim() : line;
       return {
         speaker,
@@ -17,5 +17,5 @@ function splitSpeakerLines(transcriptText) {
 }
 
 module.exports = {
-  splitSpeakerLines
+  transcribeFromText
 };

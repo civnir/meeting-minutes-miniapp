@@ -10,7 +10,7 @@ function guessOwner(text, attendees) {
   return found || '待确认';
 }
 
-function buildSummary({ title, attendees, segments }) {
+function buildRuleSummary({ title, attendees, segments }) {
   const byTopic = new Map();
 
   segments.forEach((segment) => {
@@ -22,13 +22,8 @@ function buildSummary({ title, attendees, segments }) {
       todos: []
     };
 
-    if (/决定|结论|确认|定为/.test(segment.text)) {
-      current.decision = segment.text;
-    }
-
-    if (/风险|问题|阻塞|bug/.test(segment.text)) {
-      current.risks.push(segment.text);
-    }
+    if (/决定|结论|确认|定为/.test(segment.text)) current.decision = segment.text;
+    if (/风险|问题|阻塞|bug/.test(segment.text)) current.risks.push(segment.text);
 
     if (/需要|安排|跟进|评估|完成/.test(segment.text)) {
       current.todos.push({
@@ -56,5 +51,5 @@ function buildSummary({ title, attendees, segments }) {
 }
 
 module.exports = {
-  buildSummary
+  buildRuleSummary
 };

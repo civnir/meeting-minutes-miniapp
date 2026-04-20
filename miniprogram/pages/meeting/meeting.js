@@ -25,10 +25,10 @@ Page({
   async onReady() {
     try {
       const attendees = this.data.participants.split(',').map((x) => x.trim()).filter(Boolean);
-      const data = await api.startMeeting({ title: this.data.title, attendees });
+      const data = await api.startMeeting({ title: this.data.title, attendees, scenario: 'requirements' });
       this.setData({ meetingId: data.meetingId });
     } catch (err) {
-      wx.showToast({ title: '创建会议失败', icon: 'none' });
+      wx.showToast({ title: err.message || '创建会议失败', icon: 'none' });
     }
   },
 
@@ -51,14 +51,24 @@ Page({
     this.setData({ transcriptDraft: e.detail.value });
   },
 
-  async finishMeeting() {
-    if (!this.data.meetingId) {
-      wx.showToast({ title: '会议ID缺失', icon: 'none' });
+  async appendDraft() {
+    if (!this.data.meetingId || !this.data.transcriptDraft.trim()) {
+      wx.showToast({ title: '请先输入转写文本', icon: 'none' });
       return;
     }
 
-    if (!this.data.transcriptDraft.trim()) {
-      wx.showToast({ title: '请粘贴或输入会议转写文本', icon: 'none' });
+    try {
+      await api.appendTranscript(this.data.meetingId, this.data.transcriptDraft);
+      this.setData({ transcriptDraft: '' });
+      wx.showToast({ title: '已追加到会议', icon: 'success' });
+    } catch (err) {
+      wx.showToast({ title: err.message || '追加失败', icon: 'none' });
+    }
+  },
+
+  async finishMeeting() {
+    if (!this.data.meetingId) {
+      wx.showToast({ title: '会议ID缺失', icon: 'none' });
       return;
     }
 
@@ -70,7 +80,7 @@ Page({
       getApp().globalData.latestMeeting = result;
       wx.navigateTo({ url: '/pages/summary/summary' });
     } catch (err) {
-      wx.showToast({ title: '生成纪要失败', icon: 'none' });
+      wx.showToast({ title: err.message || '生成纪要失败', icon: 'none' });
     }
   }
 });

@@ -1,11 +1,11 @@
 {
   "name": "meeting-minutes-miniapp-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "check": "node --check index.js && node --check services/mockAsrService.js && node --check services/summaryService.js"
+    "check": "node --check index.js && node --check config.js && node --check lib/httpClient.js && node --check services/meetingStore.js && node --check services/asr/index.js && node --check services/asr/mockAsrService.js && node --check services/asr/aliyunAsrService.js && node --check services/summary/index.js && node --check services/summary/ruleSummaryService.js && node --check services/summary/llmSummaryService.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
