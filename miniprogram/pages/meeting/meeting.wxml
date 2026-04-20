@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="header">
+    <text class="title">{{title}}</text>
+    <text class="status">状态：{{statusText}}</text>
+  </view>
+
+  <button class="primary" bindtap="toggleRecording">
+    {{isRecording ? '停止录音' : '开始录音'}}
+  </button>
+
+  <view class="tips">
+    <text>当前 Demo 提供“手动粘贴转写文本”入口，便于先打通纪要流程。</text>
+  </view>
+
+  <textarea
+    class="textarea"
+    value="{{transcriptDraft}}"
+    placeholder="示例：\n产品：本次需求是新增邀请裂变活动...\n研发：技术上可行，预计两周..."
+    bindinput="onDraftInput"
+  />
+
+  <button class="success" bindtap="finishMeeting">结束会议并生成纪要</button>
+</view>

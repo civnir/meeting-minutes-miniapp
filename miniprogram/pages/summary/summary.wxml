@@ -1,0 +1,20 @@
+<view class="container" wx:if="{{meeting}}">
+  <view class="card">
+    <text class="title">{{meeting.summary.title}}</text>
+    <text class="meta">{{meeting.summary.date}} · {{meeting.summary.attendees.join('、')}}</text>
+
+    <block wx:for="{{meeting.summary.topics}}" wx:key="topic">
+      <view class="topic">
+        <text class="topic-title">{{index + 1}}. {{item.topic}}</text>
+        <text>结论：{{item.decision}}</text>
+        <text>风险：{{item.risks.join('；')}}</text>
+        <text>待办：</text>
+        <block wx:for="{{item.todos}}" wx:key="task">
+          <text class="todo">- {{item.owner}}：{{item.task}}（{{item.dueDate}}）</text>
+        </block>
+      </view>
+    </block>
+
+    <button class="primary" bindtap="copySummary">复制纪要</button>
+  </view>
+</view>

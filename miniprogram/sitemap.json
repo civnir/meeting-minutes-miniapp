@@ -1,0 +1,4 @@
+{
+  "desc": "Meeting minutes miniapp sitemap",
+  "rules": [{ "action": "allow", "page": "*" }]
+}

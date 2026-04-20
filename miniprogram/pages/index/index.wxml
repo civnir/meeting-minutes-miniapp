@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="card">
+    <text class="title">会议记录助手</text>
+    <text class="subtitle">开会时一键录音，会后自动整理纪要</text>
+
+    <view class="field">
+      <text class="label">会议标题</text>
+      <input class="input" value="{{meetingTitle}}" bindinput="onTitleInput" placeholder="例如：需求评审会" />
+    </view>
+
+    <view class="field">
+      <text class="label">参会角色（逗号分隔）</text>
+      <input class="input" value="{{participants}}" bindinput="onParticipantsInput" placeholder="产品,研发,测试" />
+    </view>
+
+    <button class="primary" bindtap="startMeeting">开始会议</button>
+  </view>
+</view>
